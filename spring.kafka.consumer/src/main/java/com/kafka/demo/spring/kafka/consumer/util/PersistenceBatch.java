@@ -1,23 +1,25 @@
 package com.kafka.demo.spring.kafka.consumer.util;
 
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
-import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.hibernate.StatelessSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
+
 @Component
 public class PersistenceBatch<T> {
 
     private List<T> list = new ArrayList<>();
 
     private final EntityManagerFactory entityManagerFactory;
+
+    private static final Logger log = LoggerFactory.getLogger(PersistenceBatch.class);
 
     public PersistenceBatch(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
